@@ -1,7 +1,8 @@
+
+
 import React from 'react';
-//import {  Routes, Route } from "react-router-dom";
-import {Space} from 'antd';
-//{Navbar,Homepage,Cryptocurrencies,Exchanges,CryptoDetails,News}
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Layout, Typography, Space } from 'antd';
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage';
 import Cryptocurrencies from './components/Cryptocurrencies';
@@ -11,57 +12,51 @@ import News from './components/News';
 import './App.css';
 import 'antd/dist/reset.css';
 
-
-
-
-import {  Route, BrowserRouter as Router,Routes, Link } from "react-router-dom";
-import { Typography } from 'antd';
-
-
-const App=()=> {
+const App = () => {
   console.log("entered");
   return (
-    <div className='app'>
-      <div className='navbar'>
-        <Router>
-        <Navbar/>
-        </Router>
-      </div>
-      <div className='main'>
-      <Router >
-        <div className='routes'>
-        <Navbar/>
-        <Routes>
-          <Route exact path="/" element={<Homepage/>}/>
-          <Route exact path="/cryptocurrencies" element={<Cryptocurrencies/>}/>
-          <Route exact path="/cryptoDetails" element={<CryptoDetails/>}/>
-          <Route exact path="/exchanges" element={<Exchanges/>}/>
-          <Route exact path="/news" element={<News/>}/>
-        </Routes>
+    <Router>
+      <div className='app'>
+        <div className='navbar'>
+          <Navbar />
         </div>
-      </Router>
-     
-        <div className='footer' >
-        <Typography.Title level={5} style={{color:'white',textAlign:'center'}}>
-         Cryptoverse <br/>
-         All rights reserved
-        </Typography.Title>
-        <Space>
-          <Router>
-          <Link  className='f-link' to='/'>Home</Link>
-          <Link className='f-link' to='/exchanges'>Exchanges</Link>
-          <Link className='f-link' to='/news'>News</Link>
-          </Router>
-        </Space>
-        </div> 
+        <div className='main'>
+          <Layout> 
+            <div className="routes">
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+                <Route path="//crypto/:coinId" element={<CryptoDetails />} />
+                <Route path="/exchanges" element={<Exchanges />} />
+                <Route path="/news" element={<News />} />
+              </Routes>
+            </div>
+          </Layout>
+          <div className='footer'>
+            <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
+              Cryptoverse <br />
+              All rights reserved
+            </Typography.Title>
+            <Space>
+              <Link className='f-link' to="/">Home</Link>
+              <Link className='f-link' to='/cryptocurrencies'>Cryptocurrencies</Link>
+              <Link className='f-link' to='/exchanges'>Exchanges</Link>
+              <Link className='f-link' to='/news'>News</Link>
+            </Space>
+          </div>
+        </div>
       </div>
-
-      </div>
-       );
-      }
-    
-    
-    
- 
+    </Router>
+  );
+}
 
 export default App;
+
+
+
+
+
+
+
+
+

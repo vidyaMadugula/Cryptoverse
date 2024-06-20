@@ -15,6 +15,7 @@ const News = ({simplified}) => {
   const [newsCategory,setNewsCategory]=useState('Cryptocurrency')
   const {data:cryptoNews}=useGetCryptoNewsQuery({newsCategory,count:simplified?6:12});
   const { data }=useGetCryptosQuery(100);
+   console.log(data);
   if(!cryptoNews?.value) return <Loader/>;
   return (
     <Row gutter={[24,24]}>
@@ -39,7 +40,7 @@ const News = ({simplified}) => {
           <a href={news.url} target="_blank" rel="noreferrer">
             <div className='news-image-container'>
               <Title className='news-title' level={4}>{news.name}</Title>
-              <img style={{maxWidth:'200px',maxHeight:'100px'}} src={news?.image?.thumbnail?.contentUrl}></img>
+              <img style={{maxWidth:'200px',maxHeight:'100px'}} alt='' src={news?.image?.thumbnail?.contentUrl}></img>
             </div>
             <p>
               {news.description > 100
